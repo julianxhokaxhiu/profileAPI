@@ -25,9 +25,3 @@ Swagger UI
 ```
 http://localhost:3000/?url=http://localhost:8080/openapi
 ```
-
-Health
-
-```
-http://localhost:8080/health
-```
