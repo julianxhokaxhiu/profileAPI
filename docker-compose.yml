@@ -1,11 +1,9 @@
 version: '3.3'
-
 services:
-
   crm_db:
     image: mariadb:latest
     volumes:
-      - "./.mysql-data/db:/var/lib/mysql"
+      - crm_db_data:/var/lib/mysql
 #   restart: always
     ports:
       - 3306:3306
@@ -14,7 +12,6 @@ services:
       - MYSQL_DATABASE=apiDB
       - MYSQL_USER=api
       - MYSQL_PASSWORD=api
-      
   frontend:
     image: swaggerapi/swagger-ui
     ports:
@@ -23,7 +20,6 @@ services:
       - URL=http://localhost:8080/openapi
     depends_on:
       - crm_db
-
   api-gradle:
     build:
       context: .
@@ -35,3 +31,5 @@ services:
       - DB=crm_db
     links:
       - crm_db
+volumes:
+  crm_db_data:
